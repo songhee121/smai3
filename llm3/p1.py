@@ -21,6 +21,7 @@ if st.button("SEND"): #버튼 클릭시
         # Progress Bar End -----------------------------------------
 
         result=geminiTxt(text)  #result에 답변 저장
+        my_bar.empty()
         st.info(result)
     else:
         st.info("질문을 입력 하세요.")
