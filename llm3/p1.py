@@ -1,5 +1,5 @@
+import time
 import streamlit as st
-
 from MYLLM import geminiTxt
 
 #Side Bar
