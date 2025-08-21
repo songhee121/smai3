@@ -22,7 +22,7 @@ def save_uploadedfile(directory, file):
     st.success(f'저장 완료: {directory}에 {file.name} 저장되었습니다.')
 
 # Page
-st.title("Page 2 Image Upload")
+st.title("Page 2: Image Upload")
 file = st.file_uploader('이미지 파일 업로드', type=['png', 'jpg', 'jpeg', 'webp'])
 if file:
     st.image(file)

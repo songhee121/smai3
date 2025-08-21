@@ -8,7 +8,7 @@ from MYLLM import geminiModel, geminiTxt
 st.sidebar.markdown("Clicked Page 3")
 
 #Page
-st.title("Page 3")
+st.title("Page 3: coder")
 
 text = st.text_area(label=" 질문입력: ", placeholder="질문을 입력하세요.")
 model=geminiModel()
