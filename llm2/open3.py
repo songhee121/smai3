@@ -23,8 +23,17 @@ def test(imgName, prompt):
         temperature=0.0,
     )
     print(response.choices[0].message.content)
+    resultMp3="result3.mp3"
+    response = model.audio.speech.create(
+        model="tts-1",
+        input=response.choices[0].message.content,
+        voice="alloy",
+        response_format="mp3",
+        speed=1.1,
+    )
+    response.stream_to_file(resultMp3)
 
 if __name__ == '__main__':
     imgName="img/amd.jpg"
-    prompt="이미지에 있는 반도체의 역학을 알려줘"
+    prompt="이미지에 있는 반도체의 역할을 알려줘"
     test(imgName, prompt)
