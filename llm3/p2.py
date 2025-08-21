@@ -15,6 +15,7 @@ def save_uploadedfile(directory, file):
     # 2. 파일 저장 (이름 변경 없이 저장)
     with open(os.path.join(directory, file.name), 'wb') as f:
         f.write(file.getbuffer())
+
     # 3. 저장 완료 메시지 출력
     st.success(f'저장 완료: {directory}에 {file.name} 저장되었습니다.')
 
@@ -24,3 +25,11 @@ file = st.file_uploader('이미지 파일 업로드', type=['png', 'jpg', 'jpeg'
 if file:
     st.image(file)
     save_uploadedfile("img", file)
+
+    text=st.text_area(label=" 질문입력",
+                      placeholder="질문을 입력하세요.")
+    img=Image.open('img/'+file.name)
+
+    model=geminiModel()
+    result=model.generate_content([text, img])
+    print(result)
