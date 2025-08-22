@@ -49,3 +49,24 @@ def save_capturefile(directory, picture, name, st):
             file.write(picture.getvalue())
         # 3. 저장 완료 메시지 출력
         st.success(f'저장 완료: {directory}에 {name} 저장되었습니다.')
+
+def openAiModel():
+    client = OpenAI(api_key=OPENAI_API_KEY)
+    return client
+
+def makeMsg(system,user ):
+    messages = [
+        {"role": "system", "content": system},
+        {"role": "user", "content": user},
+    ]
+    return messages
+
+def openAiModelArg(model, msgs):
+    print(model)
+    print(msgs)
+    client = OpenAI(api_key=OPENAI_API_KEY)
+    response = client.chat.completions.create(
+        model=model,
+        messages=msgs
+    )
+    return response.choices[0].message.content
