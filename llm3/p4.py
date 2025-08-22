@@ -6,7 +6,7 @@ from MYLLM import progress_bar
 st.sidebar.markdown("Clicked Page 4")
 
 #Page
-st.title("Page 4: translator")
+st.title("Page 4: Translator")
 
 text = st.text_area(label=" 질문입력: ", placeholder="질문을 입력하세요.")
 language = st.selectbox("언어를 선택하세요", ["JAPAN", "CHINESE", "FRENCH", "RUSSIAN", "ENGLISH"])

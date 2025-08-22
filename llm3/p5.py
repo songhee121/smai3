@@ -9,7 +9,7 @@ from MYLLM import progress_bar
 st.sidebar.markdown("Clicked Page 5")
 
 #Page
-st.title("Page 5: Picture analysis")
+st.title("Page 5: Picture Analysis")
 
 picture = st.camera_input("Take a picture")
 

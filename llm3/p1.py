@@ -6,7 +6,7 @@ from MYLLM import geminiTxt, progress_bar
 st.sidebar.markdown("Clicked Page 1")
 
 #Page
-st.title("Page 1")
+st.title("Page 1: Gemini")
 text=st.text_area(label="질문입력: ",
                   placeholder="질문을 입력 하세요.")
 if st.button("SEND"): #버튼 클릭시

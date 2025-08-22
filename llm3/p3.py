@@ -6,7 +6,7 @@ from MYLLM import progress_bar
 st.sidebar.markdown("Clicked Page 3")
 
 #Page
-st.title("Page 3: coder")
+st.title("Page 3: Coder")
 
 text=st.text_area(label="질문입력: ",
                   placeholder="질문을 입력 하세요.")

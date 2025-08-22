@@ -5,7 +5,7 @@ from MYLLM import makeAudio, progress_bar, makeMsg, openAiModelArg
 st.sidebar.markdown("Clicked Page 8")
 
 #Page
-st.title("Page 8")
+st.title("Page 8: Voice Conversion")
 system=st.text_input("system", placeholder="system을 입력 하세요.")
 text=st.text_input("질문 입력", placeholder="질문을 입력 하세요.")
 if st.button("SEND"):

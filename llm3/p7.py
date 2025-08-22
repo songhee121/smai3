@@ -8,7 +8,7 @@ from MYLLM import progress_bar
 st.sidebar.markdown("Clicked Page 7")
 
 #Page
-st.title("Page 7")
+st.title("Page 7: OpenAi")
 
 system = st.text_input("SYSTEM", placeholder="system을 입력 하세요.")
 text = st.text_input("질문", placeholder="질문을 입력하세요.")
