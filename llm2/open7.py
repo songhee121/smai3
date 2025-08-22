@@ -1,6 +1,6 @@
 import urllib
 
-from myllm.MyAPI import makeMsg, openAiModel, openAiModelArg
+from myllm.MyAPI import openAiModel, openAiModelArg
 
 def test(prompt):
     openModel=openAiModel()

@@ -10,7 +10,7 @@ def encode_image(image_path):
 st.sidebar.markdown("Clicked Page 9")
 
 #Page
-st.title("Page 9: Img Analysis & Voice Conversion")
+st.title("Page 9: Img Analysis & Make Mp3")
 
 #이미지 업로드
 #이미지에 대한 질문
