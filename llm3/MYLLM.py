@@ -70,3 +70,16 @@ def openAiModelArg(model, msgs):
         messages=msgs
     )
     return response.choices[0].message.content
+def makeAudio(text, name):
+    if not os.path.exists("audio"):
+        os.makedirs("audio")
+    model = openAiModel()
+
+    response = model.audio.speech.create(
+        model="tts-1",
+        input=text,
+        voice="nova",
+        response_format="mp3",
+        speed=1.1,
+    )
+    response.stream_to_file("audio/" +name)
