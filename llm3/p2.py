@@ -3,6 +3,7 @@ import time
 import streamlit as st
 from PIL import Image
 from MYLLM import geminiModel
+from MYLLM import progress_bar
 
 #Side Bar
 st.sidebar.markdown("Clicked Page 2")
@@ -33,18 +34,12 @@ if file:
     if st.button("SEND"):  # 버튼 클릭시
         if text:  # 텍스트 존재시
             # Progress Bar Start -----------------------------------------
-            progress_text = "Operation in progress. Please wait."
-            my_bar = st.progress(0, text=progress_text)
-            for percent_complete in range(100):
-                time.sleep(0.08)
-                my_bar.progress(percent_complete + 1, text=progress_text)
-            time.sleep(1)
+            my_bar=progress_bar()
             # Progress Bar End -----------------------------------------
 
             img = Image.open('img/' + file.name)
             model=geminiModel()
             result = model.generate_content([text, img])  # result에 답변 저장
-            my_bar.empty()
             st.info(result.text)
         else:
             st.info("질문을 입력 하세요.")

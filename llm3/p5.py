@@ -3,6 +3,8 @@ import time
 import streamlit as st
 from PIL import Image
 from MYLLM import geminiModel
+from llm3.MYLLM import progress_bar
+
 
 # 선택한 파일을 저장하는 함수
 def save_uploadedfile(directory, picture):
@@ -34,18 +36,12 @@ if picture:
     if st.button("SEND"):  # 버튼 클릭시
         if text:  # 텍스트 존재시
             # Progress Bar Start -----------------------------------------
-            progress_text = "Operation in progress. Please wait."
-            my_bar = st.progress(0, text=progress_text)
-            for percent_complete in range(100):
-                time.sleep(0.08)
-                my_bar.progress(percent_complete + 1, text=progress_text)
-            time.sleep(1)
+            my_bar=progress_bar()
             # Progress Bar End -----------------------------------------
 
             img = Image.open('img/' + picture.name)
             model=geminiModel()
             result = model.generate_content([text, img])  # result에 답변 저장
-            my_bar.empty()
             st.info(result.text)
         else:
             st.info("질문을 입력 하세요.")
