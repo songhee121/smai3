@@ -9,7 +9,7 @@ from MYLLM import openAiModel
 st.sidebar.markdown("Clicked Page 10")
 
 #Page
-st.title("Page 10")
+st.title("Page 10: Image capture")
 
 picture=st.camera_input("Take a picture")
 if picture:
