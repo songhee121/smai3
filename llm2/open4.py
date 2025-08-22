@@ -19,7 +19,7 @@ def test(prompt):
     result = openAiModelArg(modelName, msg)
     print(result)
 
-    #결과는 음성으로 변환 ㅏ시오.
+    #결과는 음성으로 변환하시오.
     resultMp3="result.mp3"
     response = model.audio.speech.create(
         model="tts-1",
