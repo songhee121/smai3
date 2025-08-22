@@ -1,11 +1,9 @@
 import base64
+import urllib
 
 import streamlit as st
-from MYLLM import save_uploadedfile
+from MYLLM import progress_bar, makeAudio, encode_image, save_capturefile
 from MYLLM import openAiModel
-def encode_image(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode("utf-8")
 
 #Side Bar
 st.sidebar.markdown("Clicked Page 10")
@@ -17,16 +15,30 @@ picture=st.camera_input("Take a picture")
 if picture:
     st.info('이미지를 캡쳐했습니다.')
     st.image(picture)
-    save_uploadedfile("img", picture, st)
-    openModel = openAiModel()
-    response = openModel.images.create_variation(
-        model="dall-e-2",
-        image=open(picture, "rb"),
-        n=2,
-        size="1024x1024"
-    )
-    for n, data in enumerate(response.data):
-        print(n)
-        print(data.url)
-        name = f'img/My_clone{n}.png'
-        urllib.request.urlretrieve(data.url, name)
+    save_capturefile("capture", picture, "capturetemp.png", st)
+    text = st.text_area(label="질문입력:", placeholder="질문을 입력 하세요")
+
+    if st.button("SEND"):
+        if text:
+            img = encode_image("capture/capturetemp.png" )
+            model = openAiModel()
+            response = model.chat.completions.create(
+                model='gpt-4o',
+                messages=[
+                    {"role": "system", "content": "당신은 한국인이고, 친절하고 꼼꼼한 서포터 입니다. 질문에 정성을 다해 답변합니다."},
+                    {"role": "user", "content": [
+                        {"type": "text", "text": text},
+                        {"type": "image_url", "image_url": {
+                            "url": f"data:image/jpg;base64,{img}"}
+                         }
+                    ]}
+                ],
+                temperature=0.0,
+            )
+            my_bar = progress_bar("Operation in progress. Please wait.")
+            my_bar.empty()
+            st.info(response.choices[0].message.content)
+            makeAudio(response.choices[0].message.content, "capture_result.mp3")
+            st.audio("audio/capture_result.mp3", autoplay=True)
+        else:
+            st.info("질문을 입력 하세요.")
