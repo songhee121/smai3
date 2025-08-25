@@ -103,3 +103,31 @@ def makeImage(prompt, name):
     print(image_url)
     imgName="img/"+name
     urllib.request.urlretrieve(image_url, imgName)
+
+def makeImages(prompt, name, num):
+    openModel = openAiModel()
+    response = openModel.images.generate(
+        model="dall-e-2",
+        prompt=prompt,
+        size="1024x1024",
+        n=num,
+    )
+    for n,data in enumerate(response.data):
+        print(n)
+        print(data.url)
+        imgname = f'img/{name}_{n}.png'
+        urllib.request.urlretrieve(data.url, imgname)
+
+def cloneImages(prompt, number):
+    openModel=openAiModel()
+    response = openModel.images.create_variation(
+        model="dall-e-2",
+        image=open(prompt, "rb"),
+        n=number,
+        size="1024x1024"
+    )
+    for n, data in range(0, number):
+        print(n)
+        print(data.url)
+        imgname=f'img/{file.name}_clone{n}.png'
+        urllib.request.urlretrieve(data.url, imgname)
